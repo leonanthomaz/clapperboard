@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { API_KEY } from "../../api/tmdb";
 import axios from "axios";
-import { MovieCommentMain, MovieCommentContainer } from "./MovieCommentStyles";
-import { MOVIES_API } from "../../api/tmdb";
+import { MovieCommentMain, 
+    MovieCommentContainer,
+    MovieCommentPoster,
+    MovieCommentInfo,
+    MovieCommentBox,
+ } from "./MovieCommentStyles";
+import { IMAGES_API } from "../../api/tmdb";
 
 const MovieComment = () => {
     let {id} = useParams();
@@ -19,22 +24,29 @@ const MovieComment = () => {
 
 
     return (
-        <MovieCommentMain>
-            <MovieCommentContainer>
-                <img src={list.poster_path ? MOVIES_API + list.poster_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"}  alt={list.title}  style={{cursor: 'pointer'}}   />     
-                <h1>{list.title}</h1>
-                orçamento<p>{list.budget}</p>
-                <p>{list.homepage}</p>
-                <p>{list.original_title}</p>
-                <p>{list.overview}</p>
-                receita<p>{list.revenue}</p>
-                tempo de duração<p>{list.runtime}</p>
-                status <p>{list.status}</p>
-                media de votos<p>{list.vote_average}</p>
-                contagem de votos<p>{list.vote_count}</p>
+        <>
+        <MovieCommentMain style={{ backgroundImage: `url(${list.backdrop_path ? IMAGES_API + list.backdrop_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"})`}}>
+            <MovieCommentContainer >
+                <MovieCommentBox>
+                    {/* <img src={list.backdrop_path ? IMAGES_API + list.backdrop_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"}  alt={list.title}  style={{cursor: 'pointer'}}   />      */}
+                    <MovieCommentPoster>
+                        <img src={list.poster_path ? IMAGES_API + list.poster_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"}  alt={list.title}   />     
+                    </MovieCommentPoster>
+                </MovieCommentBox>
             </MovieCommentContainer>
-                
         </MovieCommentMain>
+        <MovieCommentInfo>
+            <h1>{list.title}</h1>
+            <h4>Orçamento: U$<span>{list.budget}</span>,00</h4>
+            <h4>Site: <span>{list.homepage}</span></h4>
+            <h4>Título original: <span>{list.original_title}</span></h4>
+            <h4>Receita: U$<span>{list.revenue}</span>,00</h4>
+            <h4>Tempo de duração: <span>{list.runtime}</span></h4>
+            <h4>Status: <span>{list.status}</span></h4>
+            <h4>Média de votos: <span>{list.vote_average}</span></h4>
+            <h4>Contagem de votos: <span>{list.vote_count}</span></h4>
+        </MovieCommentInfo>
+        </>
     )
 }
 

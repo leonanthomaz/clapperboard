@@ -164,12 +164,17 @@ const GlobalStyle = createGlobalStyle`
       justify-content: center;
       margin-top: 10px;
 
+      a{
+        color: white;
+        text-decoration: none;
+      }
+
     }
 
     .btn-modal-info{
       cursor: pointer;
       border: 2px solid white;
-      max-width: 100px;
+      max-width: 200px;
       display: flex;
       justify-content: center;
       padding: 10px;
@@ -177,6 +182,15 @@ const GlobalStyle = createGlobalStyle`
       transition: all ease 0.5s;
       border-radius: 10px;
       margin: 5px;
+      text-align: center;
+      font-size: 1rem;
+
+      
+
+      @media (max-width: 760px){
+        width: 70%;
+        max-width: 100px;
+      }
     }
 
     .btn-modal-info:hover{
@@ -184,6 +198,7 @@ const GlobalStyle = createGlobalStyle`
       transition: all ease 0.5s;
 
     }
+    
 
 `;
  

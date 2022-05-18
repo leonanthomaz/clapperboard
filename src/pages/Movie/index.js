@@ -22,7 +22,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
           width: '80%',
           height: '80%',
           color: 'white',
-          backgroundColor: '#141414de',
+          backgroundColor: '#141414',
           marginTop: '50px',
         },
       };
@@ -34,10 +34,18 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
 
     const handleOpenOverview = () => {
         setOpenOverview(!openOverview)
+
+        if(openCast == false){
+            setOpenCast(true)
+        }
     }
 
     const handleOpenCast = () => {
         setOpenCast(!openCast)
+
+        if(openOverview == false){
+            setOpenOverview(true)
+        }
     }
 
     // const castRender = async () => {
@@ -52,7 +60,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
 
     useEffect(() => {
       axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=pt-BR`).then((response)=>{
-          //console.log(response.data.cast)
+          console.log(response.data.cast)
           setCast(response.data.cast)  
       })
     }, []);
@@ -100,7 +108,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                     </div>
                 </section>
 
-                <section className='modal-info'>
+                {/* <section className='modal-info'>
                     {
                         release_date ? <div className="movie_releaseDate mb-2">
                             <b><i className="fa-solid fa-rocket"></i> Data de Lançamento : </b>
@@ -125,14 +133,14 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                             </div>
                             </div>
                         </div>
-                </section>
+                </section> */}
 
                 <div className='btn-modal-info-group'>
-                    <div className='btn-modal-info' onClick={handleOpenOverview}>Ver Sinopse</div>
-                    <div className='btn-modal-info' onClick={handleOpenCast}>Ver Elenco</div>
+                    <div className='btn-modal-info' onClick={handleOpenOverview}>Sinopse</div>
+                    <div className='btn-modal-info' onClick={handleOpenCast}>Elenco</div>
 
                     <Link to={`/movie/${id}`} className='btn-modal-info'>
-                            aaa
+                            Ver mais
                     </Link>
                 </div>
 
