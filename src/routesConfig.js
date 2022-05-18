@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import Movie from './pages/Movie';
+import MovieComment from './pages/MovieComment';
+
 import Trending from './pages/categories/Trending';
 import Comedy from './pages/categories/Comedy';
 import Action from './pages/categories/Action';
@@ -39,7 +41,10 @@ import Horror from './pages/categories/Horror';
             <Header black={blackHeader} />
             <Routes>  
                 <Route path='/' exact element={<Home/>}/>
+                
                 <Route path='/movie' element={<Movie/>}/>
+                <Route path='/movie/:id' element={<MovieComment/>}/>
+                
                 <Route path='/trending' element={<Trending/>}/>
                 <Route path='/comedy' element={<Comedy/>}/>
                 <Route path='/action' element={<Action/>}/>

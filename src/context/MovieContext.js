@@ -24,6 +24,15 @@ const MoviesContextProvider = ({children}) => {
   const [loading, setLoading] = useState(true);
   const [ text, setText ] = useState('');
   const [ boxSearch, setBoxSearch ] = useState(false)
+  
+
+  // useEffect(() => {
+  //   axios.get(`https://api.themoviedb.org/3/movie/76341/?api_key=${API_KEY}&language=pt-BR`).then((response)=>{
+  //       //console.log(response.data.results)
+  //       setMovies(response.data.results)  
+  //       setLoading(false);    
+  //   })
+  // }, []);
 
   useEffect(() => {
       axios.get(`${API_BASE}${API_TRENDING}${API_KEY}`).then((response)=>{
@@ -73,8 +82,6 @@ const MoviesContextProvider = ({children}) => {
       setSearchMovies(response.data.results)
       setBoxSearch(true) 
       setLoading(false); 
-      }).catch((err)=>{
-      //console.log(err)
       })
     },[text])
     

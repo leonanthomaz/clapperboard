@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Modal from 'react-modal';
 import { API_KEY, IMAGES_API } from '../../api/tmdb';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import { MoviesContext } from '../../context/MovieContext';
+import MovieComment from '../MovieComment';
+
 const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, vote_average ,vote_count}) => {
+
+    const { movies } = useContext(MoviesContext)
 
     const customStyles = {
         content: {
@@ -35,22 +40,22 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
         setOpenCast(!openCast)
     }
 
-    const castRender = async () => {
-        const cast = await axios(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=pt-BR`)
-        //console.log(cast.data.cast)
-        setCast(cast.data.cast)  
-    }
+    // const castRender = async () => {
+    //     const cast = await axios(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=pt-BR`)
+    //     //console.log(cast.data.cast)
+    //     setCast(cast.data.cast)  
+    // }
     
-    useEffect(() => {
-        castRender()
-    }, []);
-
     // useEffect(() => {
-    //   axios.get(`http://api.themoviedb.org/3/movie/${id}/casts?api_key=${API_KEY}`).then((response)=>{
-    //       //console.log(response.data.cast)
-    //       setCast(response.data.cast)  
-    //   })
+    //     castRender()
     // }, []);
+
+    useEffect(() => {
+      axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=pt-BR`).then((response)=>{
+          //console.log(response.data.cast)
+          setCast(response.data.cast)  
+      })
+    }, []);
     
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -98,7 +103,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                 <section className='modal-info'>
                     {
                         release_date ? <div className="movie_releaseDate mb-2">
-                            <b><i class="fa-solid fa-rocket"></i> Data de Lançamento : </b>
+                            <b><i className="fa-solid fa-rocket"></i> Data de Lançamento : </b>
                             <span>{release_date}
                             </span>
                         </div> 
@@ -107,13 +112,13 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
 
                     <div className="Vote_info">
                         <div className="mb-1">
-                            <b><i class="fa-solid fa-check-to-slot"></i> Contagem de Votos : </b>
+                            <b><i className="fa-solid fa-check-to-slot"></i> Contagem de Votos : </b>
                             <span>{vote_count}</span>
                         </div>
 
                         <div className="vote_averageField">
                             <div>
-                                <b><i class="fa-solid fa-star"></i> Média de Votos : </b>
+                                <b><i className="fa-solid fa-star"></i> Média de Votos : </b>
                                 <span>
                                     {vote_average}
                                 </span>
@@ -125,6 +130,10 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                 <div className='btn-modal-info-group'>
                     <div className='btn-modal-info' onClick={handleOpenOverview}>Ver Sinopse</div>
                     <div className='btn-modal-info' onClick={handleOpenCast}>Ver Elenco</div>
+
+                    <Link to={`/movie/${id}`} className='btn-modal-info'>
+                            aaa
+                    </Link>
                 </div>
 
                 <div className={openOverview ? 'movie_overview' : 'movie_overview active'}>
@@ -152,9 +161,9 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                     : ''}
                 </div>
 
-                <Link id={id} to={`/movie/${id}`}>
-                    Comente!
-                </Link>
+              
+
+                
 
             </div>
         </Modal>
