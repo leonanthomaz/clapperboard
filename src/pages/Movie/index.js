@@ -36,7 +36,8 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
     }
 
     const castRender = async () => {
-        const cast = await axios(`http://api.themoviedb.org/3/movie/${id}/casts?api_key=${API_KEY}`)
+        const cast = await axios(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=pt-BR`)
+        //console.log(cast.data.cast)
         setCast(cast.data.cast)  
     }
     
