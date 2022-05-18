@@ -1,0 +1,8 @@
+const castRender = async () => {
+        const cast = await axios(`http://api.themoviedb.org/3/movie/${id}/casts?api_key=${API_KEY}`)
+        setCast(cast.data.cast)  
+    }
+    
+    useEffect(() => {
+        castRender()
+    }, []);
