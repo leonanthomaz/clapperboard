@@ -35,12 +35,21 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
         setOpenCast(!openCast)
     }
 
+    const castRender = async () => {
+        const cast = await axios(`http://api.themoviedb.org/3/movie/${id}/casts?api_key=${API_KEY}`)
+        setCast(cast.data.cast)  
+    }
+    
     useEffect(() => {
-      axios.get(`http://api.themoviedb.org/3/movie/${id}/casts?api_key=${API_KEY}`).then((response)=>{
-          //console.log(response.data.cast)
-          setCast(response.data.cast)  
-      })
+        castRender()
     }, []);
+
+    // useEffect(() => {
+    //   axios.get(`http://api.themoviedb.org/3/movie/${id}/casts?api_key=${API_KEY}`).then((response)=>{
+    //       //console.log(response.data.cast)
+    //       setCast(response.data.cast)  
+    //   })
+    // }, []);
     
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
