@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const GuideMain = styled.div`
     display: flex;
     justify-content: center;
-    border: 2px solid white;
     margin: 5px;
     margin-top: 100px;
 

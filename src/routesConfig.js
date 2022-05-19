@@ -6,7 +6,6 @@ import {
  } from 'react-router-dom';
 
 import Header from './components/Header';
-import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import Movie from './pages/Movie';
@@ -16,6 +15,7 @@ import Trending from './pages/categories/Trending';
 import Comedy from './pages/categories/Comedy';
 import Action from './pages/categories/Action';
 import Horror from './pages/categories/Horror';
+import AllMovies from './pages/categories/AllMovies';
 
  const RouterPages = () => {
 
@@ -45,12 +45,12 @@ import Horror from './pages/categories/Horror';
                 <Route path='/movie' element={<Movie/>}/>
                 <Route path='/movie/:id' element={<MovieComment/>}/>
                 
+                <Route path='/allmovies' element={<AllMovies/>}/>
                 <Route path='/trending' element={<Trending/>}/>
                 <Route path='/comedy' element={<Comedy/>}/>
                 <Route path='/action' element={<Action/>}/>
                 <Route path='/horror' element={<Horror/>}/>
             </Routes>
-            <Footer/>
          </Router>
      )
  }

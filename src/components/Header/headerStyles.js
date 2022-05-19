@@ -8,12 +8,12 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    height: 70px;
+    height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
-    background: #141414;
+    background: #3b3b3b;
     transition: all ease 0.5s;
 }
 
@@ -24,8 +24,8 @@ header {
 
 header img{
     width: 200px;
-    margin-top: 15px;
-    margin-left: 5px;
+    margin-top: 20px;
+    margin-right: 25px;
 }
 
 input{
@@ -39,8 +39,8 @@ input{
     height: 15px;
 }
     header img{
-        width: 120px;
-        margin-top: 7px;
+        width: 150px;
+        margin-top: 20px;
         margin-left: 5px;
     }
 }

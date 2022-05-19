@@ -90,10 +90,8 @@ const GlobalStyle = createGlobalStyle`
 
   .active{
     display: block;
-    border: 2px solid white;
     padding: 10px;
     margin-top: 10px;
-    border-radius: 15px;
     transition: all ease 1s;
   }
   
@@ -197,22 +195,16 @@ const GlobalStyle = createGlobalStyle`
     .btn-modal-info{
       cursor: pointer;
       border: 2px solid white;
-      max-width: 200px;
-      display: flex;
-      justify-content: center;
-      padding: 10px;
-      margin-top: 10px;
+      max-width: 150px;
+      padding: 5px;
       transition: all ease 0.5s;
       border-radius: 10px;
       margin: 5px;
       text-align: center;
-      font-size: 1rem;
-
-      
 
       @media (max-width: 760px){
-        width: 70%;
-        max-width: 100px;
+        height: 30px;
+        display: block;
       }
     }
 

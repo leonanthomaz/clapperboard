@@ -9,12 +9,12 @@ const Header = ({black}) => {
     return (
     <HeaderBar>
     <header className={black ? 'black' : ''}>
+        <Navbar/>
         <div className="">
             <Link to={'/'}>
                 <img src={logo} alt={logo}/>
             </Link>
         </div>
-        <Navbar/>
     </header>
     </HeaderBar>
     );

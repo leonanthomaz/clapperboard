@@ -106,7 +106,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                     <div className='btn-modal-info' onClick={handleOpenCast}>Elenco</div>
                     <div className='btn-modal-info' onClick={handleOpenTrailer}>Trailers</div>
                     <Link to={`/movie/${id}`} className='btn-modal-info'>
-                            <p id='filme'>Ver Mais</p>
+                            Mais +
                     </Link>                    
                 </div>
 
@@ -132,8 +132,8 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                     {videos ?  videos.map((video, index)=>{
                             let url = `https://www.youtube.com/watch?v=${video.key}`
                             return(
-                                <div key={index} className=''>
-                                 <a href={url}>{video.name}</a>
+                                <div className='btn-modal-info-group' key={index}>
+                                 <Link to={url}>{video.name}</Link>
                                 </div>
                             )
                         }) : '<h4>Nenhum trailer encontrado! :( </h4>'
