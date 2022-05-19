@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal';
 import { API_KEY, IMAGES_API } from '../../api/tmdb';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,8 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
 
     const [ cast, setCast ] = useState()
     const [ openCast, setOpenCast ] = useState(true)
+    const [ videos, setVideos ] = useState([])
+
 
     const handleOpenCast = () => {
         setOpenCast(!openCast)
@@ -19,6 +21,23 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
           setCast(response.data.cast)  
       })
     }, []);
+
+        const getVideos = async () => {
+        let youtube = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
+        const video = await axios(youtube, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        console.log(video.data.videos.results[0])
+        setVideos(video.data.videos.results[0])
+      }
+
+      useEffect(()=>{
+        getVideos()
+      },[])
     
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -108,6 +127,17 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                         })
                         : ''}
                     </div>
+                </div>
+
+                <div>
+                    {videos.key === undefined ?  '' :
+                    
+                    <div className='videos' style={{border: '2px solid white', display: 'flex', flexDirection: 'column', with: '300', height: '300'}}>
+                        <a href={`https://www.youtube.com/watch?v=${videos.key}`}>Trailer</a>
+                        <video width="200" height="200" controls >
+                            <source src={`https://www.youtube.com/watch?v=${videos.key}`} type="video/mp4"/>
+                        </video>
+                    </div>}
                 </div>
 
             </div>
