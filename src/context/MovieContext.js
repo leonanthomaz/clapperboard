@@ -30,26 +30,13 @@ const MoviesContextProvider = ({children}) => {
   const [ text, setText ] = useState('');
   const [ boxSearch, setBoxSearch ] = useState(false)
 
-  
-  // useEffect(() => {
-  //   axios.get(MOVIES_API).then((response)=>{
-  //       console.log(response.data.results)
-  //       setMovies(response.data.results)  
-  //       setLoading(false);    
-  //   })
-  // }, []);
-
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await fetch(MOVIES_API)
-      .then(response => response.json())
-      //console.log(result)
-      setMovies(result)
-      setLoading(false);    
-    }
-    fetchData()
+    axios.get(MOVIES_API).then((response)=>{
+        //console.log(response.data.results)
+        setMovies(response.data.results)  
+        setLoading(false);    
+    })
   }, []);
-
 
   useEffect(() => {
       axios.get(`${API_BASE}${API_TRENDING}${API_KEY}`).then((response)=>{

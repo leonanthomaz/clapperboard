@@ -22,9 +22,9 @@ const Home = () => {
             loading ? <Loader/> : 
             
             <div className="movie-box">
-                {movies.map((movie) => {
+                {movies.map((movie, index) => {
                     return (
-                            <div key={movie.id}>
+                            <div key={index}>
                                 <Movie {...movie} key={movie.id} />
                             </div>
                         )
