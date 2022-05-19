@@ -78,16 +78,24 @@ const MoviesContextProvider = ({children}) => {
       })
     }, []);
 
-
-
-    //Campo de busca
-    useEffect(()=>{
-      axios.get(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&language=pt-BR&query=${text}`).then((response)=>{
-      setSearchMovies(response.data.results)
+    const getSearch = async () => {
+      const search = await axios(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&language=pt-BR&query=${text}`)
+      setSearchMovies(search.data.results)
       setBoxSearch(true) 
-      setLoading(false); 
-      })
+      setLoading(false) 
+    }
+    useEffect(()=>{
+      getSearch()
     },[text])
+
+    // //Campo de busca
+    // useEffect(()=>{
+    //   axios.get(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&language=pt-BR&query=${text}`).then((response)=>{
+    //   setSearchMovies(response.data.results)
+    //   setBoxSearch(true) 
+    //   setLoading(false) 
+    //   })
+    // },[text])
     
     
   return (
