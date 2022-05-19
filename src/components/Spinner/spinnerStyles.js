@@ -3,32 +3,25 @@ import styled from 'styled-components';
 export const SpinnerClass = styled.div`
 
 .loader {
-    position: relative;
-    width: 5em;
-    height: 5em;
-    transform: rotate(165deg);
-    margin-bottom: 5rem;
-}
+    border: 5px solid #ff0000; /* Vermelho e cinza*/
+    border-top: 5px solid #504c4c; /*  */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 0.8s linear infinite;
+    z-index: 99;
 
-.loader:before,
-.loader:after {
-    content: '';
-    position: absolute;
-    top: 150%;
-    left: 50%;
-    display: block;
-    width: 5em;
-    height: 5em;
-    border-radius: 0.25em;
-    transform: translate(-50%, -50%);
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 
-.loader:before {
-    animation: before 2s infinite;
-}
+    margin-top: 50px;
+  }
 
-.loader:after {
-    animation: after 2s infinite;
-}
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 
 `;

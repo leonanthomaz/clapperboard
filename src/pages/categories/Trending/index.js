@@ -10,7 +10,6 @@ const Trending = () => {
     return (
         <>
         <Guide/>
-        <hr/>
         <h2 className="movie-title-box">Top 10</h2>
         { loading ? <Loader/> : 
             

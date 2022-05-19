@@ -10,7 +10,6 @@ const Horror = () => {
     return (
         <>
         <Guide/>
-        <hr/>
         <h2 className="movie-title-box">Terror</h2>
         { loading ? <Loader/> : 
             

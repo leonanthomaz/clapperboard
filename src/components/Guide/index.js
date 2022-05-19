@@ -5,8 +5,8 @@ import { GuideMain } from "./GuideStyles";
 const Guide = () => {
     return (
         <GuideMain>
-         <Link className="btn-link" to={`/`}>
-            Top 10
+         <Link className="btn-link" to={`/top`}>
+            Populares
          </Link>
          <Link className="btn-link" to={`/comedy`}>
             Comédia

@@ -48,7 +48,7 @@ const MovieComment = () => {
         <MovieCommentMain ref={body} style={{ backgroundImage: `url(${list.backdrop_path ? IMAGES_API + list.backdrop_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"})`}}>
             <MovieCommentContainer >
                 <MovieCommentBox>
-                    <h2 id='filme'>{list.title}</h2>
+                    <h2>{list.title}</h2>
                     {/* <img src={list.backdrop_path ? IMAGES_API + list.backdrop_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"}  alt={list.title}  style={{cursor: 'pointer'}}   />      */}
                     <MovieCommentPoster>
                         <img src={list.poster_path ? IMAGES_API + list.poster_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"}  alt={list.title}   /> 
@@ -63,7 +63,7 @@ const MovieComment = () => {
         </MovieCommentMain>
         <MovieCommentInfo>
             <div className={openInfo ? 'hidden' : 'info' }>
-                <h1 id="ficha">Ficha técnica</h1>
+                <h1>Ficha técnica</h1>
                 <h4>Orçamento: U$<span>{list.budget}</span>,00</h4>
                 <h4>Site: <span>{list.homepage}</span></h4>
                 <h4>Título original: <span>{list.original_title}</span></h4>
@@ -77,7 +77,7 @@ const MovieComment = () => {
 
         <MovieCommentBoxUser>
         <div className={openComment ? 'hidden' : 'info-comment-box'}>
-            <h1 id="comentarios">Comentários</h1>
+            <h1>Comentários</h1>
             <div className="info-user">
                 <div className="avatar">
                     <img src="https://w7.pngwing.com/pngs/223/244/png-transparent-computer-icons-avatar-user-profile-avatar-heroes-rectangle-black.png" alt="" />

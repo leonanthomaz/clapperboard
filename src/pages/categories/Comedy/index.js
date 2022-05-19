@@ -10,7 +10,6 @@ const Comedy = () => {
     return (
         <>
         <Guide/>
-        <hr/>
         <h2 className="movie-title-box">Comédia</h2>
         { loading ? <Loader/> : 
             

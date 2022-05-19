@@ -40,12 +40,13 @@ import AllMovies from './pages/categories/AllMovies';
          <Router>
             <Header black={blackHeader} />
             <Routes>  
-                <Route path='/' exact element={<Home/>}/>
+                <Route path='/' element={<AllMovies/>}/>
+                
+                <Route path='/top' exact element={<Home/>}/>
                 
                 <Route path='/movie' element={<Movie/>}/>
                 <Route path='/movie/:id' element={<MovieComment/>}/>
                 
-                <Route path='/allmovies' element={<AllMovies/>}/>
                 <Route path='/trending' element={<Trending/>}/>
                 <Route path='/comedy' element={<Comedy/>}/>
                 <Route path='/action' element={<Action/>}/>

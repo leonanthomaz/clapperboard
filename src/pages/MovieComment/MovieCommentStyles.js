@@ -80,6 +80,7 @@ h2{
     h2{
         font-size: 1.5rem;
         color: white;
+        text-align: center;
     }
     display: flex;
     justify-content: center;

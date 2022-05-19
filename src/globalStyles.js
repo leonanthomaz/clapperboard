@@ -13,29 +13,6 @@ const GlobalStyle = createGlobalStyle`
     color: white;
   }
 
-
-  .loader {
-    border: 5px solid #ff0000; /* Vermelho e cinza*/
-    border-top: 5px solid #504c4c; /*  */
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 0.8s linear infinite;
-    z-index: 99;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-
-    margin-top: 50px;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
   .movie-title-box{
     text-align: center;
   }
@@ -63,7 +40,6 @@ const GlobalStyle = createGlobalStyle`
         img{
             max-width: 300px;
         }
-
     }
 
   }
@@ -86,27 +62,35 @@ const GlobalStyle = createGlobalStyle`
       margin-top: 10px;
       border-radius: 15px;
       transition: all ease 1s;
+      font-size: 1.1rem;
   }
 
   .active{
     display: block;
-    padding: 10px;
-    margin-top: 10px;
-    transition: all ease 1s;
+  }
+
+  .wrapper-cast{
+    margin-top: 20px;
+
   }
   
-
   .movie-cast-main{
     display: block;
     margin-top: 10px;
+    padding: 10px;
 
-    .movie-icon-close-sinopse{
-          display: flex;
-          float: right;
-          cursor: pointer;
-          font-size: 1.5rem;
-      }
   }
+
+  .movie-icon-close-sinopse{
+      display: flex;
+      justify-content: flex-end;
+      float: right;
+      cursor: pointer;
+      font-size: 1.5rem;
+      margin-right: 20px;
+      margin-top: 20px;
+  }
+
   .movie-cast{
       display: none;
 
@@ -126,13 +110,16 @@ const GlobalStyle = createGlobalStyle`
     }
     
     .movie-cast2{
-      border: 2px solid white;
+      border: 2px solid #d8d8d848;
       border-radius: 10px;
       max-width: 200px;
       background-color: #504c4c;
+      box-shadow: 10px 5px 5px #d8d8d848;
 
       img{
         border-radius: 10px;
+        box-shadow: 10px 5px 5px #d8d8d848;
+
       }
     }
 
@@ -174,7 +161,7 @@ const GlobalStyle = createGlobalStyle`
 
     .movie-icon-close{
         cursor: pointer;
-        font-size: 2rem;
+        font-size: 1.5rem;
         float: right;
     }
 
@@ -213,8 +200,6 @@ const GlobalStyle = createGlobalStyle`
       transition: all ease 0.5s;
 
     }
-    
-
 `;
  
 export default GlobalStyle;

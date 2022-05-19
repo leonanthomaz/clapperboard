@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [ click, setClick ] = useState(false);
+  const [ user, setUser ] = useState(false);
 
   const handleClick = () => {
       setClick(!click)
@@ -16,10 +17,12 @@ const Navbar = () => {
           </div>
           <nav className={click ? "nav-menu active" : "nav-menu"}>
               <ul>
-                <Link to={'/allmovies'}><li onClick={handleClick}>Todos os Filmes</li></Link>
-                <Link to={'/'}><li onClick={handleClick}>Home</li></Link>
-                <Link to={'/login'}><li onClick={handleClick}>Login</li></Link>
-                <Link to={'/register'}><li onClick={handleClick}>Dashboard</li></Link>
+                <Link to={'/'}><li onClick={handleClick}>Todos os Filmes</li></Link>
+                <Link to={'/top'}><li onClick={handleClick}>Populares</li></Link>
+                {user 
+                ? <Link to={'/login'}><li onClick={handleClick}>Login</li></Link>
+                : <Link to={'/register'}><li onClick={handleClick}>Cadastrar</li></Link>
+                }
               </ul>
           </nav>
       </NavbarMain>

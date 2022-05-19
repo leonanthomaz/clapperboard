@@ -10,7 +10,6 @@ const Action = () => {
     return (
         <>
         <Guide/>
-        <hr/>
         <h2 className="movie-title-box">Ação</h2>
         { loading ? <Loader/> : 
             
