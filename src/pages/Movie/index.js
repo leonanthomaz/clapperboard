@@ -106,7 +106,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                     <div className='btn-modal-info' onClick={handleOpenCast}>Elenco</div>
                     <div className='btn-modal-info' onClick={handleOpenTrailer}>Trailers</div>
                     <Link to={`/movie/${id}`} className='btn-modal-info'>
-                            Ver mais
+                            <p id='filme'>Ver Mais</p>
                     </Link>                    
                 </div>
 
