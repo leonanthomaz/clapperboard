@@ -4,63 +4,18 @@ import { API_KEY, IMAGES_API } from '../../api/tmdb';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import { MoviesContext } from '../../context/MovieContext';
-import MovieComment from '../MovieComment';
-
 const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, vote_average ,vote_count}) => {
 
-    const { movies } = useContext(MoviesContext)
-
-    const customStyles = {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-          width: '80%',
-          height: '80%',
-          color: 'white',
-          backgroundColor: '#141414',
-          marginTop: '50px',
-        },
-      };
-
     const [ cast, setCast ] = useState()
-    const [ openOverview, setOpenOverview ] = useState(true)
     const [ openCast, setOpenCast ] = useState(true)
-
-
-    const handleOpenOverview = () => {
-        setOpenOverview(!openOverview)
-
-        if(openCast == false){
-            setOpenCast(true)
-        }
-    }
 
     const handleOpenCast = () => {
         setOpenCast(!openCast)
-
-        if(openOverview == false){
-            setOpenOverview(true)
-        }
     }
 
-    // const castRender = async () => {
-    //     const cast = await axios(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=pt-BR`)
-    //     //console.log(cast.data.cast)
-    //     setCast(cast.data.cast)  
-    // }
-    
-    // useEffect(() => {
-    //     castRender()
-    // }, []);
-
     useEffect(() => {
-      axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=pt-BR`).then((response)=>{
-          console.log(response.data.cast)
+      axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=pt-BR&append_to_response=videos`).then((response)=>{
+          //console.log(response.data.cast)
           setCast(response.data.cast)  
       })
     }, []);
@@ -80,6 +35,22 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
     function closeModal() {
       setIsOpen(false);
     }
+
+    const customStyles = {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          width: '80%',
+          height: '80%',
+          color: 'white',
+          backgroundColor: '#141414',
+          marginTop: '50px',
+        },
+    };
 
     return (
         <div>
@@ -108,70 +79,36 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                     </div>
                 </section>
 
-                {/* <section className='modal-info'>
-                    {
-                        release_date ? <div className="movie_releaseDate mb-2">
-                            <b><i className="fa-solid fa-rocket"></i> Data de Lançamento : </b>
-                            <span>{release_date}
-                            </span>
-                        </div> 
-                        : null
-                    }
-
-                    <div className="Vote_info">
-                        <div className="mb-1">
-                            <b><i className="fa-solid fa-check-to-slot"></i> Contagem de Votos : </b>
-                            <span>{vote_count}</span>
-                        </div>
-
-                        <div className="vote_averageField">
-                            <div>
-                                <b><i className="fa-solid fa-star"></i> Média de Votos : </b>
-                                <span>
-                                    {vote_average}
-                                </span>
-                            </div>
-                            </div>
-                        </div>
-                </section> */}
-
-                <div className='btn-modal-info-group'>
-                    <div className='btn-modal-info' onClick={handleOpenOverview}>Sinopse</div>
-                    <div className='btn-modal-info' onClick={handleOpenCast}>Elenco</div>
-
-                    <Link to={`/movie/${id}`} className='btn-modal-info'>
-                            Ver mais
-                    </Link>
-                </div>
-
-                <div className={openOverview ? 'movie_overview' : 'movie_overview active'}>
-                    <div className='movie-icon-close-sinopse'>
-                        <i className="fa-solid fa-xmark" onClick={handleOpenOverview} ></i>
-                    </div>
+                <div className='movie_overview'>
                     <h2>Sinopse:</h2>
                     {overview}
                 </div>
 
+                <div className='btn-modal-info-group'>
+                    <div className='btn-modal-info' onClick={handleOpenCast}>Elenco</div>
 
-                <div className={openCast ? 'movie-cast' : 'movie-cast opencast'}>
-                    {/* <div className='movie-icon-close-sinopse'>
-                        <i className="fa-solid fa-xmark" onClick={handleOpenCast} ></i>
-                    </div> */}
-                    { cast ? cast.map((item)=>{
-                        return(
-                            <div className='movie-cast2'>
-                                <img src={item.profile_path ? `https://image.tmdb.org/t/p/w92/`+item.profile_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"} alt={item.name} width={92} />
-                                <h4 className="nome">{item.name}</h4>
-                                <h6 className="personagem"><i>{item.character}</i></h6>
-                            </div>
-                        )
-                    })
-                    : ''}
+                    <Link to={`/movie/${id}`} className='btn-modal-info'>
+                            Ver mais
+                    </Link>                    
                 </div>
 
-              
-
-                
+                <div className='movie-cast-main'>
+                    <div className='movie-icon-close-sinopse'>
+                        {openCast ? '' : <i className="fa-solid fa-xmark" onClick={handleOpenCast} ></i>}
+                    </div>
+                    <div className={openCast ? 'movie-cast' : 'movie-cast opencast'}>
+                        { cast ? cast.map((item)=>{
+                            return(
+                                <div className='movie-cast2'>
+                                    <img src={item.profile_path ? `https://image.tmdb.org/t/p/w92/`+item.profile_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"} alt={item.name} width={92} />
+                                    <h4 className="nome">{item.name}</h4>
+                                    <h6 className="personagem"><i>{item.character}</i></h6>
+                                </div>
+                            )
+                        })
+                        : ''}
+                    </div>
+                </div>
 
             </div>
         </Modal>

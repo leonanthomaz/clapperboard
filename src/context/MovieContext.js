@@ -16,16 +16,19 @@ export const MoviesContext = createContext();
 const MoviesContextProvider = ({children}) => {
 
   const [movies ,setMovies ] = useState([])
+
   const [popMovies ,setPopMovies ] = useState([]) 
   const [comedyMovies ,setComedyMovies ] = useState([])
   const [actionMovies ,setActionMovies ] = useState([])
   const [horrorMovies ,setHorrorMovies ] = useState([])
   const [searchMovies ,setSearchMovies ] = useState([''])  
+
   const [loading, setLoading] = useState(true);
+
   const [ text, setText ] = useState('');
   const [ boxSearch, setBoxSearch ] = useState(false)
-  
 
+  
   // useEffect(() => {
   //   axios.get(`https://api.themoviedb.org/3/movie/76341/?api_key=${API_KEY}&language=pt-BR`).then((response)=>{
   //       //console.log(response.data.results)
@@ -33,6 +36,7 @@ const MoviesContextProvider = ({children}) => {
   //       setLoading(false);    
   //   })
   // }, []);
+
 
   useEffect(() => {
       axios.get(`${API_BASE}${API_TRENDING}${API_KEY}`).then((response)=>{

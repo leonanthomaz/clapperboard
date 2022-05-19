@@ -13,15 +13,34 @@ import { IMAGES_API } from "../../api/tmdb";
 const MovieComment = () => {
     let {id} = useParams();
     const [ list, setList ] = useState([]);
+    const [ videos, setVideos ] = useState([])
 
     useEffect(()=>{
         let filme = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=pt-BR`;
         axios.get(filme).then((response)=>{
-            console.log(response.data)
+            //console.log(response.data)
             setList(response.data)
         })
       }, [])
 
+      
+
+      const getVideos = async () => {
+        let youtube = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
+        const video = await axios(youtube, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        console.log(video.data.videos.results[0])
+        setVideos(video.data.videos.results[0])
+      }
+
+      useEffect(()=>{
+        getVideos()
+      },[])
 
     return (
         <>
@@ -45,7 +64,18 @@ const MovieComment = () => {
             <h4>Status: <span>{list.status}</span></h4>
             <h4>Média de votos: <span>{list.vote_average}</span></h4>
             <h4>Contagem de votos: <span>{list.vote_count}</span></h4>
+            
         </MovieCommentInfo>
+        <div>
+
+            {videos.key === undefined ?  '' : 
+            <div className='videos' style={{border: '2px solid white', display: 'flex', flexDirection: 'column', with: '300', height: '300'}}>
+                <video width="200" height="200" controls >
+                    <source src={`https://www.youtube.com/watch?v=${videos.key}`} type="video/mp4"/>
+                </video>
+            </div>}
+
+        </div>
         </>
     )
 }

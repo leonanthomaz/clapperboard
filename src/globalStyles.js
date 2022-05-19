@@ -82,7 +82,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .movie_overview{
-      display: none;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 15px;
       transition: all ease 1s;
   }
 
@@ -96,6 +98,17 @@ const GlobalStyle = createGlobalStyle`
   }
   
 
+  .movie-cast-main{
+    display: block;
+    margin-top: 10px;
+
+    .movie-icon-close-sinopse{
+          display: flex;
+          float: right;
+          cursor: pointer;
+          font-size: 1.5rem;
+      }
+  }
   .movie-cast{
       display: none;
 
@@ -109,6 +122,12 @@ const GlobalStyle = createGlobalStyle`
     .movie-cast2{
       border: 2px solid white;
       border-radius: 10px;
+      max-width: 200px;
+      background-color: #504c4c;
+
+      img{
+        border-radius: 10px;
+      }
     }
 
     .opencast{
@@ -122,6 +141,7 @@ const GlobalStyle = createGlobalStyle`
       text-align: center;
       margin-top: 50px;
       transition: all ease 0.8s;
+
     }
 
     .opencast img{
@@ -152,12 +172,7 @@ const GlobalStyle = createGlobalStyle`
         float: right;
     }
 
-    .movie-icon-close-sinopse{
-        cursor: pointer;
-        font-size: 1.5rem;
-        float: right;
-        padding: 10px;
-    }
+    
 
     .btn-modal-info-group{
       display: flex;
