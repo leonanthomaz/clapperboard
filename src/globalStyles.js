@@ -118,6 +118,14 @@ const GlobalStyle = createGlobalStyle`
       transition: all ease 1s;
 
     }
+
+    .movie-trailer{
+      display: none;
+    }
+
+    .opentrailer{
+      display: block;
+    }
     
     .movie-cast2{
       border: 2px solid white;

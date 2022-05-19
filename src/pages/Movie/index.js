@@ -9,36 +9,35 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
     const [ cast, setCast ] = useState()
     const [ openCast, setOpenCast ] = useState(true)
     const [ videos, setVideos ] = useState([])
+    const [ openTrailer, setOpenTrailer ] = useState(true)
 
 
     const handleOpenCast = () => {
         setOpenCast(!openCast)
     }
 
+    const handleOpenTrailer = () => {
+        setOpenTrailer(!openTrailer)
+    }
+
+
     useEffect(() => {
-      axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=pt-BR&append_to_response=videos`).then((response)=>{
+      axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=pt-BR`).then((response)=>{
           //console.log(response.data.cast)
           setCast(response.data.cast)  
       })
     }, []);
 
-        const getVideos = async () => {
-        let youtube = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`;
-        const video = await axios(youtube, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        console.log(video.data.videos.results[0])
-        setVideos(video.data.videos.results[0])
-      }
 
-      useEffect(()=>{
-        getVideos()
-      },[])
-    
+      useEffect(() => {
+        axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=pt-BR&append_to_response=videos`).then((response)=>{
+            //console.log(response.data.cast)
+            //console.log(response.data.videos.results)
+            setVideos(response.data.videos.results)  
+        })
+      }, []);
+
+      
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
   
@@ -105,7 +104,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
 
                 <div className='btn-modal-info-group'>
                     <div className='btn-modal-info' onClick={handleOpenCast}>Elenco</div>
-
+                    <div className='btn-modal-info' onClick={handleOpenTrailer}>Trailers</div>
                     <Link to={`/movie/${id}`} className='btn-modal-info'>
                             Ver mais
                     </Link>                    
@@ -129,15 +128,16 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                     </div>
                 </div>
 
-                <div>
-                    {videos.key === undefined ?  '' :
-                    
-                    <div className='videos' style={{border: '2px solid white', display: 'flex', flexDirection: 'column', with: '300', height: '300'}}>
-                        <a href={`https://www.youtube.com/watch?v=${videos.key}`}>Trailer</a>
-                        <video width="200" height="200" controls >
-                            <source src={`https://www.youtube.com/watch?v=${videos.key}`} type="video/mp4"/>
-                        </video>
-                    </div>}
+                <div className={openTrailer ? 'movie-trailer' : 'movie-trailer opentrailer'}>
+                    {videos ?  videos.map((video)=>{
+                            let url = `https://www.youtube.com/watch?v=${video.key}`
+                            return(
+                                <div className=''>
+                                 <a href={url}>{video.name}</a>
+                                </div>
+                            )
+                        }) : ''
+                    }
                 </div>
 
             </div>
