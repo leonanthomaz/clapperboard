@@ -61,11 +61,11 @@ export const MovieCommentTitle = styled.div`
 
 
 export const MovieCommentInfo = styled.div`
+    display: none;
     h1{
         text-align: center;
     }
 
-    display: block;
     flex-direction: row;
     background-color: black;
     border: 2px solid white;

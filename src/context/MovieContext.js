@@ -6,7 +6,8 @@ import { API_KEY,
         API_TOP, 
         API_COMEDY,
         API_ACTION,
-        API_HORROR 
+        API_HORROR,
+        MOVIES_API
       } from "../api/tmdb";
 
 //import apiConfig from "../api/apiConfig";
@@ -17,6 +18,7 @@ const MoviesContextProvider = ({children}) => {
 
   const [movies ,setMovies ] = useState([])
 
+  const [trendMovies ,setTrendMovies ] = useState([]) 
   const [popMovies ,setPopMovies ] = useState([]) 
   const [comedyMovies ,setComedyMovies ] = useState([])
   const [actionMovies ,setActionMovies ] = useState([])
@@ -30,18 +32,29 @@ const MoviesContextProvider = ({children}) => {
 
   
   // useEffect(() => {
-  //   axios.get(`https://api.themoviedb.org/3/movie/76341/?api_key=${API_KEY}&language=pt-BR`).then((response)=>{
-  //       //console.log(response.data.results)
+  //   axios.get(MOVIES_API).then((response)=>{
+  //       console.log(response.data.results)
   //       setMovies(response.data.results)  
   //       setLoading(false);    
   //   })
   // }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await fetch(MOVIES_API)
+      .then(response => response.json())
+      //console.log(result)
+      setMovies(result)
+      setLoading(false);    
+    }
+    fetchData()
+  }, []);
+
 
   useEffect(() => {
       axios.get(`${API_BASE}${API_TRENDING}${API_KEY}`).then((response)=>{
           //console.log(response.data.results)
-          setMovies(response.data.results)  
+          setTrendMovies(response.data.results)  
           setLoading(false);    
       })
   }, []);
@@ -79,7 +92,9 @@ const MoviesContextProvider = ({children}) => {
     }, []);
 
     const getSearch = async () => {
-      const search = await axios(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&language=pt-BR&query=${text}`)
+      let URL_SEARCH = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&language=pt-BR&query=${text}`;
+      let URL_INIT = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&language=pt-BR&query=all`;
+      const search = await axios(text ? URL_SEARCH : URL_INIT )
       setSearchMovies(search.data.results)
       setBoxSearch(true) 
       setLoading(false) 
@@ -100,7 +115,9 @@ const MoviesContextProvider = ({children}) => {
     
   return (
     <MoviesContext.Provider value={{
-      movies, 
+      movies,
+      trendMovies, 
+      setTrendMovies,  
       popMovies, 
       setPopMovies, 
       comedyMovies, 

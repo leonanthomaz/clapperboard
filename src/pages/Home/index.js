@@ -18,7 +18,8 @@ const Home = () => {
             <SearchInput value={text} onChange={(str)=>setText(str)} />
             { text === '' ? '' : <MovieSearchBox />}
         </div>
-        { loading ? <Loader/> : 
+        {
+            loading ? <Loader/> : 
             
             <div className="movie-box">
                 {movies.map((movie) => {

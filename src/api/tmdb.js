@@ -14,7 +14,7 @@ export const API_DOCUMENTARY = '/discover/movie?with_genres=99&language=pt-BR&ap
 export const IMAGES_API = 'https://image.tmdb.org/t/p/w1280' 
 export const MOVIES_API = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=pt-BR&page=`
 
-//export const GENERAL_API = `https://api.themoviedb.org/3/movie/discover?api_key=${API_KEY}&language=pt-BR&page=`
+export const GENERAL_API = `https://api.themoviedb.org/3/movie/discover?api_key=${API_KEY}&language=pt-BR&page=`
 //export const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}&language=pt-BR`
 //export const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&language=pt-BR&query=`
 //export const API_TRENDING = `${API_BASE}/trending/all/week?language=pt-BR&api_key=${API_KEY}`;
