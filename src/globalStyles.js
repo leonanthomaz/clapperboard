@@ -52,8 +52,7 @@ const GlobalStyle = createGlobalStyle`
             max-width: 230px;
         }
     }
-    
-
+  
   }
 
   .modal{
@@ -67,6 +66,7 @@ const GlobalStyle = createGlobalStyle`
     h3{
       margin-top: 10px;
     }
+    
 
     .movie-poster{
        max-width: 500px;
@@ -240,9 +240,13 @@ const GlobalStyle = createGlobalStyle`
       transition: all ease 0.5s;
 
     }
+
+    
   }
 
-
+  .login-register{
+    margin-top: 100px;
+  }
 `;
  
 export default GlobalStyle;

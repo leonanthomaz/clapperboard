@@ -16,7 +16,7 @@ const MovieComment = () => {
     const [ list, setList ] = useState([]);
     const [ openInfo, setOpenInfo ] = useState(true)
     const [ openComment, setOpenComment ] = useState(true)
-
+    
     useEffect(()=>{
         let filme = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=pt-BR`;
         axios.get(filme).then((response)=>{
@@ -35,10 +35,16 @@ const MovieComment = () => {
 
       const handleOpenInfo = () => {
         setOpenInfo(!openInfo)
+        if(setOpenComment(true)){
+            openComment(false)
+        }
       }
 
       const handleOpenComment = () => {
         setOpenComment(!openComment)
+        if(setOpenInfo(true)){
+            openInfo(false)
+        }
       }
 
 
@@ -61,6 +67,9 @@ const MovieComment = () => {
             </MovieCommentContainer>
         </MovieCommentMain>
         <MovieCommentInfo>
+            <div className='movie-icon-close-sinopse'>
+                {openInfo  ? '' : <i className="fa-solid fa-xmark" onClick={handleOpenInfo} ></i>}
+            </div>
             <div className={openInfo ? 'hidden' : 'info' }>
                 <h1>Ficha técnica</h1>
                 <h4>Orçamento: U$<span>{list.budget}</span>,00</h4>
@@ -75,6 +84,9 @@ const MovieComment = () => {
         </MovieCommentInfo>
 
         <MovieCommentBoxUser>
+        <div className='movie-icon-close-sinopse'>
+            {openComment  ? '' : <i className="fa-solid fa-xmark" onClick={handleOpenComment} ></i>}
+        </div>
         <div className={openComment ? 'hidden' : 'info-comment-box'}>
             <h1>Comentários</h1>
             <div className="info-user">

@@ -17,6 +17,9 @@ import Action from './pages/categories/Action';
 import Horror from './pages/categories/Horror';
 import AllMovies from './pages/categories/AllMovies';
 
+import Login from './pages/Login';
+import Register from './pages/Register';
+
  const RouterPages = () => {
 
     //definindo faixa principal
@@ -51,6 +54,10 @@ import AllMovies from './pages/categories/AllMovies';
                 <Route path='/comedy' element={<Comedy/>}/>
                 <Route path='/action' element={<Action/>}/>
                 <Route path='/horror' element={<Horror/>}/>
+
+                <Route path='/login' element={<Login/>}/>
+                <Route path='/register' element={<Register/>}/>
+
             </Routes>
          </Router>
      )

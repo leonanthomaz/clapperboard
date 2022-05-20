@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { ModalContainer } from './movieStyles';
 
-const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, vote_average ,vote_count}) => {
+const Movie = ({ title, id, genre_ids, release_date, poster_path, backdrop_path, overview, vote_average ,vote_count}) => {
 
     const [ cast, setCast ] = useState()
     const [ openCast, setOpenCast ] = useState(true)
     const [ videos, setVideos ] = useState([])
     const [ openTrailer, setOpenTrailer ] = useState(true)
-
+    const [ user, setUser ] = useState(true);
 
     const handleOpenCast = () => {
         setOpenCast(!openCast)
@@ -77,6 +77,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
         },
     };
 
+
     return (
         <ModalContainer>
             <div className="movie" >
@@ -106,15 +107,15 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
 
                     <div className='movie_overview'>
                         <h3>Sinopse:</h3>
-                        {overview}
+                        { overview ? overview : <h5>Sinopse não encontrada... :C </h5>}
                     </div>
 
                     <div className='btn-modal-info-group'>
                         <div className='btn-modal-info' onClick={handleOpenCast}>Elenco</div>
                         <div className='btn-modal-info' onClick={handleOpenTrailer}>Trailers</div>
-                        <Link to={`/movie/${id}`} className='btn-modal-info'>
+                        {user ? <Link to={`/movie/${id}`} className='btn-modal-info'>
                                 Mais +
-                        </Link>                    
+                        </Link> : ''}                   
                     </div>
 
                     <div className='wrapper-cast'>
@@ -124,7 +125,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                         <div className='movie-cast-main'>
                             
                             <div className={openCast ? 'movie-cast' : 'movie-cast opencast'}>
-                                { cast ? cast.map((item, index)=>{
+                                { cast && cast.length !== 0 ? cast.map((item, index)=>{
                                     return(
                                         <div key={index} className='movie-cast2'>
                                             <img src={item.profile_path ? `https://image.tmdb.org/t/p/w92/`+item.profile_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"} alt={item.name} width={92} />
@@ -133,16 +134,16 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                                         </div>
                                     )
                                 })
-                                : <h5>Nenhuma sinopse encontrada...</h5>}
+                                : <h5>Não encontrado...</h5>}
                             </div>
                         </div>
                     </div>
                     
 
                     <div className={openTrailer ? 'movie-trailer' : 'movie-trailer opentrailer'}>
-                        
-                        {videos ?  videos.map((video, index)=>{
-                                let url = `https://www.youtube.com/watch?v=${video.key}`
+
+                        {videos && videos.length !== 0 ? videos.map((video, index)=>{
+                                let url = `https://www.youtube.com/watch?v=${video.key}`                              
                                 return(
                                     <div className='btn-modal-info-group' key={index}>
                                     <a href={url}>{video.name}</a>
@@ -150,6 +151,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                                 )
                             }) : <h5>Nenhum vídeo encontrado...</h5>
                         }
+
                     </div>
 
                 </div>

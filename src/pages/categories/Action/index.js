@@ -15,7 +15,7 @@ const Action = () => {
             
             <div className="movie-box">
                 {actionMovies.map((movie, index) => {
-                    return (
+                        return (
                             <div key={index}>
                                 <Movie {...movie} key={movie.id} />
                             </div>
