@@ -7,16 +7,16 @@ import { MovieCommentMain,
     MovieCommentPoster,
     MovieCommentInfo,
     MovieCommentBox,
-    MovieCommentBoxUser,
  } from "./MovieCommentStyles";
 import { IMAGES_API } from "../../api/tmdb";
+import Comment from "../Comment";
 
 const MovieComment = () => {
     let {id} = useParams();
     const [ list, setList ] = useState([]);
     const [ openInfo, setOpenInfo ] = useState(true)
     const [ openComment, setOpenComment ] = useState(true)
-    
+
     useEffect(()=>{
         let filme = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=pt-BR`;
         axios.get(filme).then((response)=>{
@@ -40,12 +40,14 @@ const MovieComment = () => {
         }
       }
 
+
       const handleOpenComment = () => {
         setOpenComment(!openComment)
         if(setOpenInfo(true)){
             openInfo(false)
         }
-      }
+        }
+
 
 
     return (
@@ -83,27 +85,8 @@ const MovieComment = () => {
             </div>
         </MovieCommentInfo>
 
-        <MovieCommentBoxUser>
-        <div className='movie-icon-close-sinopse'>
-            {openComment  ? '' : <i className="fa-solid fa-xmark" onClick={handleOpenComment} ></i>}
-        </div>
-        <div className={openComment ? 'hidden' : 'info-comment-box'}>
-            <h1>Comentários</h1>
-            <div className="info-user">
-                <div className="avatar">
-                    <img src="https://w7.pngwing.com/pngs/223/244/png-transparent-computer-icons-avatar-user-profile-avatar-heroes-rectangle-black.png" alt="" />
-                </div>
-                <h4>Leonan</h4>
-            </div>
-            <div className="info-comment">
-                
-                    <div className="spoiler">Contém Spoiler</div>
-                    <div className="comment">Muito bom o filme</div>
-                    <span className="date-comment">19-05-1990</span>
-            </div>
-        </div>
-        </MovieCommentBoxUser>
-
+        <Comment openComment={openComment} setOpenComment={setOpenComment} handleOpenComment={handleOpenComment} />
+        
         </>
     )
 }

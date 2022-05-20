@@ -4,6 +4,7 @@ import { API_KEY, IMAGES_API } from '../../api/tmdb';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { ModalContainer } from './movieStyles';
+import Comment from '../Comment';
 
 const Movie = ({ title, id, genre_ids, release_date, poster_path, backdrop_path, overview, vote_average ,vote_count}) => {
 
@@ -11,7 +12,8 @@ const Movie = ({ title, id, genre_ids, release_date, poster_path, backdrop_path,
     const [ openCast, setOpenCast ] = useState(true)
     const [ videos, setVideos ] = useState([])
     const [ openTrailer, setOpenTrailer ] = useState(true)
-    const [ user, setUser ] = useState(true);
+    const [ user, setUser ] = useState(true)
+    
 
     const handleOpenCast = () => {
         setOpenCast(!openCast)
@@ -153,6 +155,8 @@ const Movie = ({ title, id, genre_ids, release_date, poster_path, backdrop_path,
                         }
 
                     </div>
+
+                    <Comment id={id}/>
 
                 </div>
             </Modal>
