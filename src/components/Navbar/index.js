@@ -17,11 +17,11 @@ const Navbar = () => {
           </div>
           <nav className={click ? "nav-menu active" : "nav-menu"}>
               <ul>
-                <Link to={'/'}><li onClick={handleClick}>Todos os Filmes</li></Link>
-                <Link to={'/top'}><li onClick={handleClick}>Populares</li></Link>
+                <Link to={'/'}><li className="nav-item" onClick={handleClick}>Todos os Filmes</li></Link>
+                <Link to={'/top'}><li className="nav-item" onClick={handleClick}>Populares</li></Link>
                 {user 
-                ? <Link to={'/login'}><li onClick={handleClick}>Login</li></Link>
-                : <Link to={'/register'}><li onClick={handleClick}>Cadastrar</li></Link>
+                ? <Link to={'/login'}><li className="nav-item" onClick={handleClick}>Login</li></Link>
+                : <Link to={'/register'}><li className="nav-item" onClick={handleClick}>Cadastrar</li></Link>
                 }
               </ul>
           </nav>

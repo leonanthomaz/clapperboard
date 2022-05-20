@@ -62,11 +62,18 @@ const MoviesContextProvider = ({children}) => {
       })
     }, []);
 
+  
     useEffect(() => {
       axios.get(`${API_BASE}${API_ACTION}${API_KEY}`).then((response)=>{
           //console.log(response.data.results)
-          setActionMovies(response.data.results)  
-          setLoading(false);    
+          const genero = response.data.results.map((e)=>e.genre_ids)
+          
+          console.log(genero)
+          //console.log(response.data.results)
+          setActionMovies(response.data.results)
+          setLoading(false);
+          //console.log(response.data.results)
+          //setActionMovies(response.data.results)  
       })
     }, []);
 

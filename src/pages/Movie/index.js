@@ -15,10 +15,16 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
 
     const handleOpenCast = () => {
         setOpenCast(!openCast)
+        if(setOpenTrailer(true)){
+            openTrailer(false)
+        }
     }
 
     const handleOpenTrailer = () => {
         setOpenTrailer(!openTrailer)
+        if(setOpenCast(true)){
+            openCast(false)
+        }
     }
 
 
@@ -48,7 +54,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
   
     function afterOpenModal() {
       // references are now sync'd and can be accessed.
-      subtitle.style.color = '#f00';
+      subtitle.style.color = '#ff0000';
     }
   
     function closeModal() {
@@ -67,14 +73,14 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
           height: '80%',
           color: 'white',
           backgroundColor: '#141414',
-          marginTop: '50px',
+          marginTop: '60px',
         },
     };
 
     return (
         <ModalContainer>
             <div className="movie" >
-                <img src={poster_path ? IMAGES_API + poster_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"}  onClick={openModal}  alt={title}  style={{cursor: 'pointer'}}   />     
+                <img src={poster_path ? IMAGES_API + poster_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"}  onClick={openModal}  alt={title}   />     
             </div>
         
             <Modal
@@ -87,19 +93,19 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                 //portalClassName="modal"
 
             >
-                <div className='modal' style={{overflow: 'hidden'}}>
+                <div className='modal'>
                     <div className='movie-icon-close'>
                         <i className="fa-solid fa-xmark" onClick={closeModal} ></i>
                     </div>
-                    <h2 ref={(_subtitle) => (subtitle = _subtitle)} style={{textAlign: 'center', marginTop: '40px'}}>{title}</h2>
+                    <h1 ref={(_subtitle) => (subtitle = _subtitle)}>{title}</h1>
                     <section >
-                        <div className="movie-poster" style={{ maxWidth: '800px', margin: 'auto', border: '1px solid white', borderRadius: '5px'}}>
-                            <img src={backdrop_path ? IMAGES_API + backdrop_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"} alt={title} style={{borderRadius: '10px', width: '100%'}}/>
+                        <div className="movie-poster">
+                            <img src={backdrop_path ? IMAGES_API + backdrop_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"} alt={title}/>
                         </div>
                     </section>
 
                     <div className='movie_overview'>
-                        <h2>Sinopse:</h2>
+                        <h3>Sinopse:</h3>
                         {overview}
                     </div>
 
@@ -110,6 +116,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                                 Mais +
                         </Link>                    
                     </div>
+
                     <div className='wrapper-cast'>
                         <div className='movie-icon-close-sinopse'>
                             {openCast  ? '' : <i className="fa-solid fa-xmark" onClick={handleOpenCast} ></i>}
@@ -133,6 +140,7 @@ const Movie = ({ title, id, release_date, poster_path, backdrop_path, overview, 
                     
 
                     <div className={openTrailer ? 'movie-trailer' : 'movie-trailer opentrailer'}>
+                        
                         {videos ?  videos.map((video, index)=>{
                                 let url = `https://www.youtube.com/watch?v=${video.key}`
                                 return(

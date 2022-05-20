@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const MovieCommentMain = styled.div`
 
-margin-top: 50px;
 background-repeat: no-repeat;
 background-size: auto;
 background-position: center;
@@ -56,13 +55,20 @@ align-items: center;
       margin: 5px;
       text-align: center;
       font-size: 1rem;
-
+    
+      background-color: red;
       
-
       @media (max-width: 760px){
         width: 70%;
         max-width: 100px;
       }
+    }
+    .btn-comment-info:hover{
+        background-color: black;
+    }
+
+    .btn-comment-info:active{
+        background-color: yellow;
     }
 
 h2{

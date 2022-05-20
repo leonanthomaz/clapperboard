@@ -14,10 +14,10 @@ const Action = () => {
         { loading ? <Loader/> : 
             
             <div className="movie-box">
-                {actionMovies.map((movie) => {
+                {actionMovies.map((movie, index) => {
                     return (
-                            <div key={movie.id}>
-                                <Movie {...movie} key={movie.id} id={movie.id} />
+                            <div key={index}>
+                                <Movie {...movie} key={movie.id} />
                             </div>
                         )
                     } 

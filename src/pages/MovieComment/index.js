@@ -56,7 +56,6 @@ const MovieComment = () => {
                             <a className="btn-comment-info" href="#ficha" onClick={handleOpenInfo}>Ficha</a> 
                             <a className="btn-comment-info" href="#comentarios" onClick={handleOpenComment}>Comentários</a> 
                         </div>
-                          
                     </MovieCommentPoster>
                 </MovieCommentBox>
             </MovieCommentContainer>

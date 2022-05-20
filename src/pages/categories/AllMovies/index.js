@@ -43,7 +43,6 @@ const AllMovies = () => {
             <SearchInput value={text} onChange={(str)=>setText(str)} />
             { text === '' ? '' : <MovieSearchBox />}
         </div>
-        <h2 className="movie-title-box">Todos os filmes</h2>
         { loading ? <Loader/> : 
             
             <div className="movie-box">

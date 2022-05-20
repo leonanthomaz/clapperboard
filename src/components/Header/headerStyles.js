@@ -8,7 +8,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 90px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,11 +37,11 @@ input{
     input{
     width: 150px;
     height: 15px;
-}
+    }
     header img{
         width: 150px;
         margin-top: 20px;
-        margin-left: 5px;
+        margin-right: 5px;
     }
 }
 

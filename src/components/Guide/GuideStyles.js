@@ -13,13 +13,12 @@ export const GuideMain = styled.div`
        border: 2px solid red;
        border-radius: 10px;
        transition: all ease 0.5s;
-
    }
 
    a:hover{
-       background-color: red;
-       transition: all ease 0.5s;
-
+    background-color: red;
+    transition: all ease 0.5s;
+    border: 2px solid white;
    }
 
    .btn-link{
