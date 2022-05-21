@@ -6,7 +6,8 @@ const Comment = ({movieId, openComment}) =>{
     const [ listComment, setListComment ] = useState([]);
     const [ values, setValues ] = useState('')
     const userId = '123'
-    console.log(values)
+
+    //console.log(values)
 
     const handleChangeValue = (e) => {
         setValues(prevValue => ({
@@ -15,7 +16,7 @@ const Comment = ({movieId, openComment}) =>{
         }))
     }
 
-    const handleSendComment = (movieId) => {
+    const handleSendComment = () => {
         api.post('post/insert',{
             movieId: movieId,
             userId: userId,
@@ -68,7 +69,7 @@ const Comment = ({movieId, openComment}) =>{
                         <label>Titulo</label><br/>
                         <input type='text' name="title" onChange={handleChangeValue} /><br/>
                         <textarea type='text' name="comment" onChange={handleChangeValue} placeholder="Deixe seu comentário..." /><br/>
-                        <input onClick={handleSendComment} type='submit'/>
+                        <button onClick={handleSendComment} type='submit'>Enviar</button>
                     </form>
                 <div className="info-user">
                     <div className="avatar">
@@ -76,19 +77,21 @@ const Comment = ({movieId, openComment}) =>{
                     </div>
                 <div className="info-comment">
                         {listComment.map((c, index)=>{
-                            return (
-                                <>
-                                <h4>{c.name}</h4>
-                                <h5>{c.movieId}</h5>
-                                <h5>{c.userId}</h5>
-                                
-                                <div className="spoiler">{c.spoiler === "yes" ? 'Contém Spoiler' : 'Sem Spoiler'}</div>
-                                <h5>Nota: {c.stars}</h5>
-                                <div className="title">{c.title}</div>
-                                <div className="comment">{c.comment}</div>
-                                <span className="date-comment">{c.date}</span>
-                                </>
-                            )
+                            if(movieId == c.movieId){
+                                return (
+                                    <div key={index}>
+                                    <h4>nome: {c.name}</h4>
+                                    <h5>id do filme: {c.movieId}</h5>
+                                    <h5>id do usuario: {c.userId}</h5>
+                                    
+                                    <div className="spoiler">{c.spoiler === "yes" ? 'Contém Spoiler' : 'Sem Spoiler'}</div>
+                                    <h5>Nota: {c.stars}</h5>
+                                    <div className="title">{c.title}</div>
+                                    <div className="comment">{c.comment}</div>
+                                    <span className="date-comment">{c.date}</span>
+                                    </div>
+                                )
+                            }
                         })}
                     </div>
                 </div>

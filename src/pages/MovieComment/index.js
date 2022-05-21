@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useRef } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { API_KEY } from "../../api/tmdb";
 import axios from "axios";
 import { MovieCommentMain, 
@@ -85,7 +85,7 @@ const MovieComment = () => {
             </div>
         </MovieCommentInfo>
 
-        <Comment openComment={openComment} setOpenComment={setOpenComment} handleOpenComment={handleOpenComment} />
+        <Comment movieId={list.id} openComment={openComment} setOpenComment={setOpenComment} handleOpenComment={handleOpenComment} />
         
         </>
     )
