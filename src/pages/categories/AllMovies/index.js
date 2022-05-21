@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MoviesContext } from "../../../context/MovieContext";
 import Loader from '../../../components/Spinner';
-import Movie from "../../Movie";
+import MovieModal from "../../MovieModal";
 import Guide from "../../../components/Guide";
 import axios from "axios";
 import { MOVIES_API } from '../../../api/tmdb';
@@ -49,7 +49,7 @@ const AllMovies = () => {
                 {allMovies.map((movie, index) => {
                     return (
                             <div key={index}>
-                                <Movie {...movie} key={movie.id} id={movie.id} />
+                                <MovieModal {...movie} key={movie.id} id={movie.id} />
                             </div>
                         )
                     } 

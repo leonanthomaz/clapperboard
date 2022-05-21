@@ -7,6 +7,8 @@ import { API_KEY,
         API_COMEDY,
         API_ACTION,
         API_HORROR,
+        API_ROMANCE,
+        API_DOCUMENTARY,
         MOVIES_API,
         GENRES
       } from "../api/tmdb";
@@ -24,6 +26,9 @@ const MoviesContextProvider = ({children}) => {
   const [comedyMovies ,setComedyMovies ] = useState([])
   const [actionMovies ,setActionMovies ] = useState([])
   const [horrorMovies ,setHorrorMovies ] = useState([])
+  const [romanceMovies ,setRomanceMovies ] = useState([])
+  const [documentaryMovies ,setDocumentaryMovies ] = useState([])
+
   const [searchMovies ,setSearchMovies ] = useState([''])
   
   const [genres, setGenres] = useState([])
@@ -88,6 +93,22 @@ const MoviesContextProvider = ({children}) => {
       })
     }, []);
 
+    useEffect(() => {
+      axios.get(`${API_BASE}${API_ROMANCE}${API_KEY}`).then((response)=>{
+          //console.log(response.data.results)
+          setRomanceMovies(response.data.results)  
+          setLoading(false);    
+      })
+    }, []);
+
+    useEffect(() => {
+      axios.get(`${API_BASE}${API_DOCUMENTARY}${API_KEY}`).then((response)=>{
+          //console.log(response.data.results)
+          setDocumentaryMovies(response.data.results)  
+          setLoading(false);    
+      })
+    }, []);
+
     const getSearch = async () => {
       let URL_SEARCH = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&language=pt-BR&query=${text}`;
       let URL_INIT = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&language=pt-BR&query=all`;
@@ -125,6 +146,10 @@ const MoviesContextProvider = ({children}) => {
       setActionMovies,
       horrorMovies,
       setHorrorMovies,
+      romanceMovies,
+      setRomanceMovies,
+      documentaryMovies,
+      setDocumentaryMovies,
       searchMovies,
       setSearchMovies, 
       boxSearch, setBoxSearch,

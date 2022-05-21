@@ -61,8 +61,8 @@ const MovieComment = () => {
                     <MovieCommentPoster>
                         <img src={list.poster_path ? IMAGES_API + list.poster_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"}  alt={list.title}   /> 
                         <div className="btn-comment-info-group">
-                            <a className="btn-comment-info" href="#ficha" onClick={handleOpenInfo}>Ficha</a> 
-                            <a className="btn-comment-info" href="#comentarios" onClick={handleOpenComment}>Comentários</a> 
+                            <a className="btn-comment-info" onClick={handleOpenInfo}>Ficha</a> 
+                            <a className="btn-comment-info" onClick={handleOpenComment}>Comentários</a> 
                         </div>
                     </MovieCommentPoster>
                 </MovieCommentBox>

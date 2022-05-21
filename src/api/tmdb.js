@@ -9,8 +9,6 @@ export const API_HORROR = '/discover/movie?with_genres=27&language=pt-BR&api_key
 export const API_ROMANCE = '/discover/movie?with_genres=10749&language=pt-BR&api_key=';
 export const API_DOCUMENTARY = '/discover/movie?with_genres=99&language=pt-BR&api_key=';
 
-//export const CAST = 'http://api.themoviedb.org/3/movie/{id}/casts?api_key={api_key}';
-
 export const IMAGES_API = 'https://image.tmdb.org/t/p/w1280' 
 export const MOVIES_API = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=pt-BR&page=`
 

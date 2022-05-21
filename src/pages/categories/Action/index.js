@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { MoviesContext } from "../../../context/MovieContext";
 import Loader from '../../../components/Spinner';
-import Movie from "../../Movie";
+import MovieModal from "../../MovieModal";
 import Guide from "../../../components/Guide";
 
 const Action = () => {
@@ -17,7 +17,7 @@ const Action = () => {
                 {actionMovies.map((movie, index) => {
                         return (
                             <div key={index}>
-                                <Movie {...movie} key={movie.id} />
+                                <MovieModal {...movie} key={movie.id} />
                             </div>
                         )
                     } 

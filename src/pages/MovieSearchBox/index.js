@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { MoviesContext } from "../../context/MovieContext";
 import Loader from '../../components/Spinner';
-import Movie from "../Movie";
+import MovieModal from "../MovieModal";
 import { MovieSearchBoxMain } from "./MovieSearchBoxStyles";
 
 const MovieDetails = () => {
@@ -13,7 +13,7 @@ const MovieDetails = () => {
           searchMovies.map((movie) => {
               return (
                       <div className="search-grid" key={movie.id}>
-                          <Movie {...movie} key={movie.id} id={movie.id} />
+                          <MovieModal {...movie} key={movie.id} id={movie.id} />
                       </div>
                   )
               } 

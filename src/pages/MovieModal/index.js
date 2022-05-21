@@ -3,10 +3,9 @@ import Modal from 'react-modal';
 import { API_KEY, IMAGES_API } from '../../api/tmdb';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { ModalContainer } from './movieStyles';
 import Comment from '../Comment';
 
-const Movie = ({ title, id, genre_ids, release_date, poster_path, backdrop_path, overview, vote_average ,vote_count}) => {
+const MovieModal = ({ title, id, genre_ids, release_date, poster_path, backdrop_path, overview, vote_average ,vote_count}) => {
 
     const [ cast, setCast ] = useState()
     const [ openCast, setOpenCast ] = useState(true)
@@ -81,7 +80,7 @@ const Movie = ({ title, id, genre_ids, release_date, poster_path, backdrop_path,
 
 
     return (
-        <ModalContainer>
+        <>
             <div className="movie" >
                 <img src={poster_path ? IMAGES_API + poster_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"}  onClick={openModal}  alt={title}   />     
             </div>
@@ -160,8 +159,8 @@ const Movie = ({ title, id, genre_ids, release_date, poster_path, backdrop_path,
 
                 </div>
             </Modal>
-        </ModalContainer>
+        </>
     )
 }
 
-export default Movie;
+export default MovieModal;

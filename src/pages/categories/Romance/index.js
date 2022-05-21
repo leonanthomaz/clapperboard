@@ -4,17 +4,17 @@ import Loader from '../../../components/Spinner';
 import MovieModal from "../../MovieModal";
 import Guide from "../../../components/Guide";
 
-const Horror = () => {
-    const { horrorMovies, loading } = useContext(MoviesContext)
+const Romance = () => {
+    const { romanceMovies, loading } = useContext(MoviesContext)
 
     return (
         <>
         <Guide/>
-        <h2 className="movie-title-box">Terror</h2>
+        <h2 className="movie-title-box">Romance</h2>
         { loading ? <Loader/> : 
             
             <div className="movie-box">
-                {horrorMovies.map((movie) => {
+                {romanceMovies.map((movie) => {
                     return (
                             <div key={movie.id}>
                                 <MovieModal {...movie} key={movie.id} id={movie.id} />
@@ -28,4 +28,4 @@ const Horror = () => {
     );
 }
 
-export default Horror;
+export default Romance;
