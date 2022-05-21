@@ -11,7 +11,7 @@ a{
 }
 
 a:link{
-    color: purple;
+    color: white;
 }
 a:visited {
     color:white;

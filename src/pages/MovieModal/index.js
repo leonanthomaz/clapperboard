@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Comment from '../Comment';
 
-const MovieModal = ({ title, id, genre_ids, release_date, poster_path, backdrop_path, overview, vote_average ,vote_count}) => {
+const MovieModal = ({ title, id, poster_path, backdrop_path, overview}) => {
 
     const [ cast, setCast ] = useState()
     const [ openCast, setOpenCast ] = useState(true)
