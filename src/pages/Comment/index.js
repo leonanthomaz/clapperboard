@@ -69,7 +69,7 @@ const Comment = ({movieId, openComment}) =>{
                 <input type='text' name="title" onChange={handleChangeValue} /><br/>
                 <label>Comentário:</label><br/>
                 <textarea type='text' name="comment" onChange={handleChangeValue} placeholder="Deixe seu comentário..." /><br/>
-                <a className="btn-send-comment" onClick={handleSendComment} type='submit'>Enviar</a>
+                <button className="btn-send-comment" onClick={handleSendComment} type='submit'>Enviar</button>
             </CommentForm>
             <div className={openComment ? 'hidden' : 'info-comment-box'}>                    
                 <div className="info-user">
