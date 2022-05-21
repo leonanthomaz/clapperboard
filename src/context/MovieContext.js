@@ -2,7 +2,6 @@ import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
 import { API_KEY, 
         API_TRENDING, 
-        API_BASE, 
         API_TOP, 
         API_COMEDY,
         API_ACTION,
@@ -10,7 +9,6 @@ import { API_KEY,
         API_ROMANCE,
         API_DOCUMENTARY,
         MOVIES_API,
-        GENRES
       } from "../api/tmdb";
 
 //import apiConfig from "../api/apiConfig";
@@ -47,7 +45,7 @@ const MoviesContextProvider = ({children}) => {
   }, []);
 
   useEffect(() => {
-      axios.get(`${API_BASE}${API_TRENDING}${API_KEY}`).then((response)=>{
+      axios.get(API_TRENDING).then((response)=>{
           //console.log(response.data.results)
           setTrendMovies(response.data.results)  
           setLoading(false);    
@@ -55,7 +53,7 @@ const MoviesContextProvider = ({children}) => {
   }, []);
 
     useEffect(() => {
-      axios.get(`${API_BASE}${API_TOP}${API_KEY}`).then((response)=>{
+      axios.get(API_TOP).then((response)=>{
           //console.log(response.data.results)
           setPopMovies(response.data.results)  
           setLoading(false);    
@@ -63,7 +61,7 @@ const MoviesContextProvider = ({children}) => {
     }, []);
 
     useEffect(() => {
-          axios.get(`${API_BASE}${API_COMEDY}${API_KEY}`).then((response)=>{
+          axios.get(API_COMEDY).then((response)=>{
           //console.log(response.data.results)
           const list = response.data.results
           // let genero = genre_ids.map((e, i, a) => e)
@@ -76,7 +74,7 @@ const MoviesContextProvider = ({children}) => {
 
   
     useEffect(() => {
-      axios.get(`${API_BASE}${API_ACTION}${API_KEY}`).then((response)=>{
+      axios.get(API_ACTION).then((response)=>{
           //console.log(response.data.results)
           const list = response.data.results
           setActionMovies(list)
@@ -86,7 +84,7 @@ const MoviesContextProvider = ({children}) => {
 
 
     useEffect(() => {
-      axios.get(`${API_BASE}${API_HORROR}${API_KEY}`).then((response)=>{
+      axios.get(API_HORROR).then((response)=>{
           //console.log(response.data.results)
           setHorrorMovies(response.data.results)  
           setLoading(false);    
@@ -94,7 +92,7 @@ const MoviesContextProvider = ({children}) => {
     }, []);
 
     useEffect(() => {
-      axios.get(`${API_BASE}${API_ROMANCE}${API_KEY}`).then((response)=>{
+      axios.get(API_ROMANCE).then((response)=>{
           //console.log(response.data.results)
           setRomanceMovies(response.data.results)  
           setLoading(false);    
@@ -102,7 +100,7 @@ const MoviesContextProvider = ({children}) => {
     }, []);
 
     useEffect(() => {
-      axios.get(`${API_BASE}${API_DOCUMENTARY}${API_KEY}`).then((response)=>{
+      axios.get(API_DOCUMENTARY).then((response)=>{
           //console.log(response.data.results)
           setDocumentaryMovies(response.data.results)  
           setLoading(false);    
@@ -120,16 +118,6 @@ const MoviesContextProvider = ({children}) => {
     useEffect(()=>{
       getSearch()
     },[text])
-
-    // //Campo de busca
-    // useEffect(()=>{
-    //   axios.get(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&language=pt-BR&query=${text}`).then((response)=>{
-    //   setSearchMovies(response.data.results)
-    //   setBoxSearch(true) 
-    //   setLoading(false) 
-    //   })
-    // },[text])
-    
     
   return (
     <MoviesContext.Provider value={{

@@ -10,7 +10,7 @@ import SearchInput from "../../components/Search";
 import MovieSearchBox from '../../pages/MovieSearchBox';
 
 const AllMovies = () => {
-    const { movies, setMovies, loading , setLoading, text, setText } = useContext(MoviesContext)
+    const { loading , setLoading, text, setText } = useContext(MoviesContext)
     const [allMovies, setAllMovies] = useState([])
 
     useEffect(() => {
@@ -18,6 +18,10 @@ const AllMovies = () => {
     }, [text]);
 
     const getMovies = async () => {
+        setTimeout(()=> {
+            setLoading(true);
+        },3000)
+
         const numberList =  Array(10).fill(2).map((v,i)=>i+2);
         const bigData =[]
         numberList.map( async (num) => {

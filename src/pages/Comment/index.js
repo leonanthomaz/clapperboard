@@ -35,8 +35,10 @@ const Comment = ({movieId, openComment}) =>{
         api.get('post/get').then((response)=>{
             //console.log(response.data)
             //console.log(response.data.map(e=>e.movieId))
-            console.log(response.data)
-            setListComment(response.data)
+            if(response){
+                console.log(response.data)
+                setListComment(response.data)
+            }
             // if(response.data.map(e=>e.movieId) === movieId){
             //     setListComment(response.data)
             // }
@@ -53,7 +55,7 @@ const Comment = ({movieId, openComment}) =>{
             <CommentForm>
                 <input name="movieId" type='hidden' value={movieId} />
                 <label>Contém spoiler? </label>
-                <select name="spoiler" onChange={handleChangeValue}><br/>
+                <select name="spoiler" onChange={handleChangeValue}>
                     <option value='yes'>Sim</option>
                     <option value='no'>Não</option>
                 </select><br/>

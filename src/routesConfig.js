@@ -19,8 +19,6 @@ import Horror from './pages/categories/Horror';
 import Romance from './pages/categories/Romance';
 import Documentary from './pages/categories/Documentary';
 
-import AllMovies from './pages/categories/AllMovies';
-
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -47,7 +45,7 @@ import Register from './pages/Register';
          <Router>
             <Header black={blackHeader} />
             <Routes>  
-                <Route path='/' element={<AllMovies/>}/>
+                <Route path='/' element={<Home/>}/>
                 
                 <Route path='/top' exact element={<Top/>}/>
                 
