@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CommentMain, CommentForm } from "./CommentStyles";
+import { CommentMain, CommentForm, CommentButtonSubmit } from "./CommentStyles";
 import api from "../../api/apiBackend";
 
 const Comment = ({movieId, openComment}) =>{
@@ -69,7 +69,7 @@ const Comment = ({movieId, openComment}) =>{
                 <input type='text' name="title" onChange={handleChangeValue} /><br/>
                 <label>Comentário:</label><br/>
                 <textarea type='text' name="comment" onChange={handleChangeValue} placeholder="Deixe seu comentário..." /><br/>
-                <button className="btn-send-comment" onClick={handleSendComment} type='submit'>Enviar</button>
+                <CommentButtonSubmit onClick={handleSendComment} type='submit'>Enviar</CommentButtonSubmit>
             </CommentForm>
             <div className={openComment ? 'hidden' : 'info-comment-box'}>                    
                 <div className="info-user">

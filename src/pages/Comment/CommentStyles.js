@@ -77,6 +77,10 @@ textarea{
     height: 100px;
 }
 
+
+`;
+
+export const CommentButtonSubmit = styled.button`
 .btn-send-comment{
     margin: 10px;
     border: 1px solid red;
@@ -92,4 +96,5 @@ textarea{
     color: red;
     transition: all ease 0.5s;
 }
+
 `;
