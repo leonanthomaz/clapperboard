@@ -156,7 +156,7 @@ const Movie = ({ title, id, genre_ids, release_date, poster_path, backdrop_path,
 
                     </div>
 
-                    <Comment id={id}/>
+                    <Comment movieId={id}/>
 
                 </div>
             </Modal>
