@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CommentMain } from "./CommentStyles";
+import { CommentMain, CommentForm } from "./CommentStyles";
 import api from "../../api/apiBackend";
 
 const Comment = ({movieId, openComment}) =>{
@@ -49,46 +49,44 @@ const Comment = ({movieId, openComment}) =>{
     return (
         <>
         <CommentMain >
-            <div className={openComment ? 'hidden' : 'info-comment-box'}>
-                <h1>Comentários</h1>
-                <form>
-                        <input name="movieId" type='hidden' value={movieId} />
-                        <label>Contém spoiler? </label>
-                        <select name="spoiler" onChange={handleChangeValue}><br/>
-                            <option value='yes'>Sim</option>
-                            <option value='no'>Não</option>
-                        </select><br/>
-                        <label>Quantas estrelas este filme merece? </label>
-                        <select name="stars" onChange={handleChangeValue}><br/>
-                            <option value='1'>1</option>
-                            <option value='2'>2</option>
-                            <option value='3'>3</option>
-                            <option value='4'>4</option>
-                            <option value='5'>5</option>
-                        </select><br/>
-                        <label>Titulo</label><br/>
-                        <input type='text' name="title" onChange={handleChangeValue} /><br/>
-                        <textarea type='text' name="comment" onChange={handleChangeValue} placeholder="Deixe seu comentário..." /><br/>
-                        <button onClick={handleSendComment} type='submit'>Enviar</button>
-                    </form>
+            <h3>Comentários: </h3>
+            <CommentForm>
+                <input name="movieId" type='hidden' value={movieId} />
+                <label>Contém spoiler? </label>
+                <select name="spoiler" onChange={handleChangeValue}><br/>
+                    <option value='yes'>Sim</option>
+                    <option value='no'>Não</option>
+                </select><br/>
+                <label>Quantas estrelas este filme merece? </label>
+                <select name="stars" onChange={handleChangeValue}><br/>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                </select><br/>
+                <label>Titulo:</label><br/>
+                <input type='text' name="title" onChange={handleChangeValue} /><br/>
+                <label>Comentário:</label><br/>
+                <textarea type='text' name="comment" onChange={handleChangeValue} placeholder="Deixe seu comentário..." /><br/>
+                <a className="btn-send-comment" onClick={handleSendComment} type='submit'>Enviar</a>
+            </CommentForm>
+            <div className={openComment ? 'hidden' : 'info-comment-box'}>                    
                 <div className="info-user">
-                    <div className="avatar">
-                        <img src="https://w7.pngwing.com/pngs/223/244/png-transparent-computer-icons-avatar-user-profile-avatar-heroes-rectangle-black.png" alt="" />
-                    </div>
-                <div className="info-comment">
+                    <div className="info-comment">
                         {listComment.map((c, index)=>{
                             if(movieId == c.movieId){
                                 return (
                                     <div key={index}>
-                                    <h4>nome: {c.name}</h4>
-                                    <h5>id do filme: {c.movieId}</h5>
-                                    <h5>id do usuario: {c.userId}</h5>
-                                    
-                                    <div className="spoiler">{c.spoiler === "yes" ? 'Contém Spoiler' : 'Sem Spoiler'}</div>
-                                    <h5>Nota: {c.stars}</h5>
-                                    <div className="title">{c.title}</div>
-                                    <div className="comment">{c.comment}</div>
-                                    <span className="date-comment">{c.date}</span>
+                                        <div className="avatar">
+                                            <img src={c.avatar ? `${c.avatar}`: "https://w7.pngwing.com/pngs/223/244/png-transparent-computer-icons-avatar-user-profile-avatar-heroes-rectangle-black.png"} alt="avatar" />
+                                        </div>
+                                        <h4 className="user-name">{c.name}</h4> 
+                                        <div className="spoiler">Contém spoiler? <div>{c.spoiler === "yes" ? <span style={{color: 'red'}}>Contém Spoiler</span> : <span style={{color: 'green'}}>Não Contém Spoiler</span>}</div></div>
+                                        <h5>Nota: {c.stars}</h5>
+                                        <div className="title"><i>{c.title}</i></div>
+                                        <div className="comment">{c.comment}</div>
+                                        <span className="date-comment">{c.date}</span>
                                     </div>
                                 )
                             }

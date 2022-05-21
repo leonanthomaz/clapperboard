@@ -41,7 +41,6 @@ export const CommentMain = styled.div`
     max-width: 500px;
 
     .spoiler{
-        color: red;
     }
     .comment{
     }
@@ -52,4 +51,45 @@ export const CommentMain = styled.div`
     
 }
 
+`;
+
+export const CommentForm = styled.form`
+border: 2px solid white;
+padding: 15px;
+font-variant: small-caps;
+text-align: center;
+
+select{
+    border: 2px solid red;
+    width: 60px;
+    text-align: center;
+}
+
+input{
+    margin: 10px;
+    width: 50%;
+    height: 20px;
+}
+
+textarea{
+    margin: 10px;
+    width: 50%;
+    height: 100px;
+}
+
+.btn-send-comment{
+    margin: 10px;
+    border: 1px solid red;
+    padding: 5px;
+    width: 100px;
+    background-color: red;
+    transition: all ease 0.5s;
+    cursor: pointer;
+}
+
+.btn-send-comment:hover{
+    background-color: white;
+    color: red;
+    transition: all ease 0.5s;
+}
 `;
