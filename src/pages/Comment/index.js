@@ -75,7 +75,7 @@ const Comment = ({movieId, openComment}) =>{
                 <div className="info-user">
                     <div className="info-comment">
                         {listComment.map((c, index)=>{
-                            if(movieId == c.movieId){
+                            if(movieId === c.movieId){
                                 return (
                                     <div key={index}>
                                         <div className="avatar">
