@@ -10,7 +10,7 @@ import SearchInput from "../../components/Search";
 import MovieSearchBox from '../../pages/MovieSearchBox';
 
 const AllMovies = () => {
-    const { loading , setLoading, text, setText } = useContext(MoviesContext)
+    const {loading , setLoading, text, setText, closeSearch} = useContext(MoviesContext)
     const [allMovies, setAllMovies] = useState([])
 
     useEffect(() => {
@@ -34,7 +34,6 @@ const AllMovies = () => {
               }
             })
         })  
-    
         setTimeout(()=> {
             setLoading(false);
         },3000)
@@ -45,7 +44,7 @@ const AllMovies = () => {
         <Guide/>
         <div>
             <SearchInput value={text} onChange={(str)=>setText(str)} />
-            { text === '' ? '' : <MovieSearchBox />}
+            { !text && setText ? '' : <MovieSearchBox />}
         </div>
         { loading ? <Loader/> : 
             

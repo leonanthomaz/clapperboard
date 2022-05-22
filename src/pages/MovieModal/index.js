@@ -5,14 +5,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Comment from '../Comment';
 
-const MovieModal = ({ title, id, poster_path, backdrop_path, overview}) => {
+const MovieModal = ({ title, id, genres_ids, poster_path, backdrop_path, overview}) => {
 
     const [ cast, setCast ] = useState()
     const [ openCast, setOpenCast ] = useState(true)
     const [ videos, setVideos ] = useState([])
     const [ openTrailer, setOpenTrailer ] = useState(true)
     const [ user, setUser ] = useState(true)
-    
 
     const handleOpenCast = () => {
         setOpenCast(!openCast)
@@ -44,7 +43,6 @@ const MovieModal = ({ title, id, poster_path, backdrop_path, overview}) => {
             setVideos(response.data.videos.results)  
         })
       }, []);
-
       
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -105,6 +103,10 @@ const MovieModal = ({ title, id, poster_path, backdrop_path, overview}) => {
                             <img src={backdrop_path ? IMAGES_API + backdrop_path : "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80"} alt={title}/>
                         </div>
                     </section>
+
+                    <div>
+                        
+                    </div>
 
                     <div className='movie_overview'>
                         <h3>Sinopse:</h3>

@@ -20,25 +20,27 @@ const GlobalStyle = createGlobalStyle`
   .movie-box{
     display: grid;
     grid-template-columns: 250px 250px 250px;    
-    grid-gap: 15px;    
+    grid-gap: 30px;    
     justify-content: center;
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
-    transition: all ease 0.8s;
+    transition: all ease 1s;
 
     img{
         cursor: pointer;
         width: 100%;
         -webkit-transition: -webkit-transform .5s ease;
         transition: transform .5s ease; 
-        
-        
+        box-shadow: 0.5rem 0.10rem 0.5rem 0.10rem black;
+        transition: all ease 1s;
+
       }
 
     img:hover{
       -webkit-transform: scale(1.1);
       transform: scale(1.1);
+      box-shadow: 0.5rem 0.10rem 0.5rem 0.10rem white;
     }
 
     @media (max-width: 760px){

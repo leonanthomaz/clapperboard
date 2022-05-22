@@ -73,6 +73,7 @@ a:active  {
         margin-top: 100px;
         left: -400px;
         transition: all 0.5s ease;
+        border-radius: 5px;
     }
 
     .nav-menu.active{

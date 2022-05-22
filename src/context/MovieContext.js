@@ -35,12 +35,13 @@ const MoviesContextProvider = ({children}) => {
 
   const [ text, setText ] = useState('');
   const [ boxSearch, setBoxSearch ] = useState(false)
+  const [ closeSearch, setCloseSearch ] = useState(false)
 
   useEffect(() => {
     axios.get(MOVIES_API).then((response)=>{
         //console.log(response.data.results)
         setMovies(response.data.results)  
-        setLoading(false);    
+        setLoading(false); 
     })
   }, []);
 
@@ -141,6 +142,7 @@ const MoviesContextProvider = ({children}) => {
       searchMovies,
       setSearchMovies, 
       boxSearch, setBoxSearch,
+      closeSearch, setCloseSearch,
       setMovies, 
       loading, 
       setLoading, 
